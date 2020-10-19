@@ -1,0 +1,30 @@
+.wg-tabs {
+    display: flex;
+    border-bottom: 1px solid #ccc;
+    position: relative;
+    >.tab-pane {
+        text-align: center;
+        margin: 0 30px 0 0;
+        padding: 12px;
+        cursor: pointer;
+        &:hover {
+            color:  $menu-item-active-color;
+        }
+        // &.tab-active {
+        //     color:  $menu-item-active-color;
+        //     border-bottom: $menu-item-active-border-width solid $menu-item-active-color;
+        // }
+        &.tab-disabled {
+            color: $menu-item-disabled-color;
+            pointer-events: none;
+            cursor: default;
+        }
+    }
+    >.tabs-ink-bar {
+        position: absolute;
+        width: 50px;
+        bottom: -1px;
+        border-bottom: 2px solid $menu-item-active-color;
+    }
+    
+}
