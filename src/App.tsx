@@ -71,7 +71,7 @@ function App() {
           </div>
       </Transition>
 
-      <Tabs activeKey="0">
+      <Tabs activeKey="0" type="card">
         <TabPane tab="标签1" paneKey="0" ></TabPane>
         <TabPane tab="标签2" paneKey="1" disabled></TabPane>
         <TabPane tab="标签3" paneKey="2" ></TabPane>
