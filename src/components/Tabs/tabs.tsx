@@ -1,5 +1,6 @@
 import React, { useState, createContext } from 'react';
 import classNames from 'classnames'
+import { types } from 'util';
 
 type position = 'top' | 'bottom' | 'left' | 'right'
 type tabsType = 'card' | 'line' | 'editable-card'
@@ -9,13 +10,14 @@ export interface ITabsProps {
     type?: tabsType,
     activeKey?: string,
     onChange?: (index: string) => void,
-    onEdit?: (index:string, e: ()=>void) => void
+    onEdit?: (index:string) => void
 }
 
 interface ITabsContext {
     index: string,
     type?: tabsType,
     onChange?: (index: string, e:HTMLDivElement ) => void,
+    onEdit?: (index: string) => void,
 }
 
 export const TabsContext = createContext<ITabsContext>({index: '0'})
@@ -27,8 +29,9 @@ const Tabs: React.FC<ITabsProps> = (props) => {
         children,
         activeKey,
         onChange,
+        onEdit
     } = props
-
+    console.log(children)
     const classes = classNames('wg-tabs', {
         [`tabs-${tabsPosition}`]: tabsPosition,
         [`tabs-${type}`]: type
@@ -44,18 +47,31 @@ const Tabs: React.FC<ITabsProps> = (props) => {
             onChange(e.current)
         }
     }
+    const editClick = (index: string) => {
+        if(onEdit) {
+            onEdit(index)
+        }
+    }
     const passContext:ITabsContext = {
         index: active ? active : '0',
-        type:'line',
+        type: type,
         onChange: handleClick,
+        onEdit: editClick,
     }
 
     return (
         <div className={classes}>
-            <TabsContext.Provider value={passContext}>
-                { children }
-                <div className="tabs-ink-bar" style={site}></div>
-            </TabsContext.Provider>
+            <div className="tabs-title">
+                <TabsContext.Provider value={passContext}>
+                    { children }
+                    <div className="tabs-ink-bar" style={site}></div>
+                </TabsContext.Provider>
+            </div>
+            <div className="tabs-content">
+                {
+                    
+                }
+            </div>
         </div>
     )
 }

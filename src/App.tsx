@@ -10,7 +10,19 @@ import Tabs from './components/Tabs/tabs'
 import TabPane from './components/Tabs/tabPane'
 
 function App() {
-  const [show, setShow] = useState(false)
+  const [show, setShow] = useState(false);
+  const [list, setList] = useState([
+    {name: '标签1'},
+    {name: '标签2'},
+    {name: '标签3', closePane: true},
+    {name: '标签4'},
+    {name: '标签5'},
+  ])
+  const closePane = (index: string) => {
+    const arr = list.slice()
+    arr.splice(Number(index), 1)
+    setList(arr)
+  }
   return (
     <div className="App">
       <Button>Button </Button>
@@ -70,11 +82,19 @@ function App() {
           </p>
           </div>
       </Transition>
-
-      <Tabs activeKey="0" type="card">
-        <TabPane tab="标签1" paneKey="0" ></TabPane>
-        <TabPane tab="标签2" paneKey="1" disabled></TabPane>
-        <TabPane tab="标签3" paneKey="2" ></TabPane>
+      <br />
+      <br />
+      <br />
+      <Tabs activeKey="0"  type="editable-card" onEdit={closePane}>
+        {
+          list.map((item, index)=>{
+            return (
+              <TabPane tab={item.name} paneKey={index.toString()} closable={item.closePane} key={index}>
+                <h1>这是h1标签<b>999</b></h1>
+              </TabPane>
+            )
+          })
+        }
       </Tabs>
     </div>
   );

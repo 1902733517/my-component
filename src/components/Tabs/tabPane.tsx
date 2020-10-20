@@ -1,11 +1,14 @@
 import React, { useContext, useRef } from 'react'
 import classNames  from 'classnames'
 import { TabsContext } from './tabs'
+import Icon from '../Icon/icon'
+import { types } from 'util'
 
 export interface TabPaneProps {
     tab?: string,
     paneKey?: string,
-    disabled?: boolean
+    disabled?: boolean,
+    closable?: boolean,
 }
 
 const TabPane:React.FC<TabPaneProps> = (props) => {
@@ -14,6 +17,8 @@ const TabPane:React.FC<TabPaneProps> = (props) => {
         tab,
         paneKey,
         disabled,
+        closable,
+        children
     } = props
     const domRef =  useRef<HTMLDivElement>(null)
     const classes = classNames('tab-pane', {
@@ -25,9 +30,21 @@ const TabPane:React.FC<TabPaneProps> = (props) => {
             context.onChange(paneKey, domRef.current as HTMLDivElement)
         }
     }
+    const closeClick =  () => {
+        if(context.onEdit && !disabled && (typeof paneKey === 'string')) {
+            context.onEdit(paneKey)
+        }
+    }
     return (
         <div className={classes} onClick={() => {handleClick()}} ref={domRef}>
             {tab}
+            {
+                context.type == 'editable-card' && !closable ? 
+                (<button className="tabs-tab-remove" onClick={() => {closeClick()}}>
+                    <Icon  icon="times" />
+                </button>) : ''
+            }
+            
         </div>
     )
 }
