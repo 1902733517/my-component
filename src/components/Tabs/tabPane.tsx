@@ -2,7 +2,6 @@ import React, { useContext, useRef } from 'react'
 import classNames  from 'classnames'
 import { TabsContext } from './tabs'
 import Icon from '../Icon/icon'
-import { types } from 'util'
 
 export interface TabPaneProps {
     tab?: string,

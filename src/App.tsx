@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './styles/index.scss';
-import Button, {ButtonType, ButtonSize} from './components/Button/button'
+import Button from './components/Button/button'
 import Menu from './components/Menu/menu'
 import MenuItem from './components/Menu/menuItem'
 import SubMenu from './components/Menu/subMenu'
@@ -8,6 +8,7 @@ import Icon from './components/Icon/icon'
 import Transition from './components/Transition/transition'
 import Tabs from './components/Tabs/tabs'
 import TabPane from './components/Tabs/tabPane'
+import { Input } from './components/Input/input'
 
 function App() {
   const [show, setShow] = useState(false);
@@ -27,11 +28,11 @@ function App() {
     <div className="App">
       <Button>Button </Button>
       <Button disabled>disabled Button</Button>
-      <Button btnType={ButtonType.Danger}  size={ButtonSize.Small} >Small Danger </Button>
-      <Button btnType={ButtonType.Primary} size={ButtonSize.Small} disabled>disabled Danger </Button>
-      <Button btnType={ButtonType.Primary} size={ButtonSize.Large}>Large Danger </Button>
-      <Button btnType={ButtonType.Link} href="www.baidu.com">Link</Button>
-      <Button btnType={ButtonType.Link} href="www.baidu.com" disabled>disabled Link</Button>
+      <Button btnType='danger'  size='sm'>Small Danger </Button>
+      <Button btnType='primary' size='sm' disabled>disabled Danger </Button>
+      <Button btnType='primary' size='lg'>Large Danger </Button>
+      <Button btnType='link' href="www.baidu.com">Link</Button>
+      <Button btnType='link' href="www.baidu.com" disabled>disabled Link</Button>
     
       <Menu onSelect={(index) => {alert(index)}} >
         <MenuItem>
@@ -96,6 +97,20 @@ function App() {
           })
         }
       </Tabs>
+      <br />
+      <br />
+      <div style={{marginLeft: '15px',}}>
+        <Input icon="search" placeholder="placeholder"/>
+        <br />
+        <Input disabled placeholder="placeholder" />
+        <br />
+        <Input append=".com" placeholder="placeholder" />
+        <br />
+        <Input prepand="https:"placeholder="placeholder" />
+        <br />
+        <Input prepand="https:" append=".com" placeholder="placeholder" />
+      </div>
+      
     </div>
   );
 }
