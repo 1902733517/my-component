@@ -1,0 +1,58 @@
+.wg-upload-list {
+    width: 251px;
+    padding: 0px 5px;
+    margin: 0px;
+    li {
+        min-height: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        font-size: 14px;
+        align-items: center;
+        padding: 7px;
+        &:hover{
+            background-color: #f5f5f5;
+            .file-action {
+                display: inline-block;
+            }
+            .file-status {
+                display: none;
+            }
+        }
+    }
+    .list-content {
+        width: 100%;
+    }
+    .file-action {
+        display: none;
+    }
+}
+.file-icon {
+    color: #bbb;
+}
+.file-name {
+    width: 200px;
+    display: inline-block;
+    padding: 0 10px;
+    font-size: 16px;
+}
+.file-name-error {
+    color: red;
+}
+.upload-progress {
+    border-radius: 0px;
+    height: 10px;
+    progress {
+        border-radius: 3px;
+        overflow: hidden;
+        background-color: #eee;         //总体的背景色
+        height: 10px;  
+        min-width: 230px;                        //进度条的高度
+    }
+    progress::-webkit-progress-bar {
+        background-color: #eee;    //未达到的百分比的颜色
+    }
+      
+    progress::-webkit-progress-value {
+        background-color: #3385fd; //value的百分比的颜色
+    }
+}
