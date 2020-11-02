@@ -3,6 +3,7 @@ import { storiesOf } from '@storybook/react'
 import { action  } from '@storybook/addon-actions'
 import { Upload } from './upload'
 import Button from '../Button/button'
+import Icon from '../Icon/icon'
 
 
 const checkFileSize = (file: File) => {
@@ -29,10 +30,14 @@ const SimpleUpload = () => {
             headers={{'token': '10086'}}
             accept=".jpg"
             multiple
+            drag
             // beforeUpload={checkFileSize}
             // beforeUpload={filePromise}
         >
-            <Button btnType="primary" >上传多图</Button>
+            <Icon icon="upload" size="5x" theme="secondary"/>
+            <br />
+            <p>Drag file over to upload</p>
+            {/* <Button btnType="primary" >上传多图</Button> */}
         </Upload>
     )
 }

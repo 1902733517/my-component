@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+        "outDir": "dist",  //目标地址
+        "module": "esnext", //模块化文件形式
+        "target": "es5", //编译后符合的es6标准
+        "declaration": true, //为每个 js 文件 生成 .d.ts文件
+        "jsx": "react",
+        "moduleResolution": "node", //安装node的方式寻找文件
+        "allowSyntheticDefaultImports": true, //开启 default 导出方式
+    },
+    "include": [ //要编译覆盖的文件夹
+        "src"
+    ],
+    "exclude": [ //不要编译覆盖的文件夹
+        "src/**/*.test.tsx",
+        "src/**/*.stories.tsx"
+    ]  
+}

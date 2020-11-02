@@ -1,11 +1,10 @@
 import React, { useState, createContext } from 'react';
 import classNames from 'classnames'
-import { types } from 'util';
 
 type position = 'top' | 'bottom' | 'left' | 'right'
 type tabsType = 'card' | 'line' | 'editable-card'
 
-export interface ITabsProps {
+export interface TabsProps {
     tabsPosition?: position,
     type?: tabsType,
     activeKey?: string,
@@ -22,7 +21,7 @@ interface ITabsContext {
 
 export const TabsContext = createContext<ITabsContext>({index: '0'})
 
-const Tabs: React.FC<ITabsProps> = (props) => {
+const Tabs: React.FC<TabsProps> = (props) => {
     const {
         type,
         tabsPosition,

@@ -3,6 +3,7 @@ import axios from 'axios'
 import Button from '../Button/button'
 import Icon from '../Icon/icon'
 import {UploadList} from "./uploadList"
+import Dragger from './dragger'
 
 export type UploadFilestatus = 'ready' | 'uploading' | 'success' | 'error'
 
@@ -33,7 +34,8 @@ export interface UploadProps {
     withCredentials?: boolean,
 
     accept?: string,
-    multiple?: boolean
+    multiple?: boolean,
+    drag?: boolean // 拖动上传
 }
 
 
@@ -53,7 +55,8 @@ export const Upload:FC<UploadProps> = (props) => {
         withCredentials,
         accept,
         multiple,
-        children
+        children,
+        drag,
     } 
     = props
     const fileRef = useRef<HTMLInputElement>(null);
@@ -120,7 +123,7 @@ export const Upload:FC<UploadProps> = (props) => {
             raw: file
         }
         // setFileList([_file, ...fileList]) // 无法时时拿到最新值
-        setFileList( prevList =>{
+        setFileList(prevList =>{
             return [_file, ...prevList]
         })
         const formData = new FormData()
@@ -175,7 +178,12 @@ export const Upload:FC<UploadProps> = (props) => {
                 style={{display: 'inline-block'}}
                 onClick={handleClick}
             >
-                {children}
+                {drag ? 
+                    <Dragger onFile={(files) =>{uploadFiles(files)}}>
+                        {children}
+                    </Dragger>:
+                    children
+                }
                 <input 
                     type="file" 
                     className="wg-file-input"
